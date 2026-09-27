@@ -295,7 +295,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v6
         with:
-          repository: langchain-ai/langchain
+          repository: ${{ github.repository }}
           path: langchain
           sparse-checkout: | # this only grabs files for relevant dir
             ${{ env.EFFECTIVE_WORKING_DIR }}

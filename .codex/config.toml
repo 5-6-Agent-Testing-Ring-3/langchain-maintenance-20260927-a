@@ -1,0 +1,61 @@
+model = "gpt-6-astra"
+model_reasoning_effort = "medium"
+approval_policy = "on-request"
+approvals_reviewer = "user"
+sandbox_mode = "workspace-write"
+web_search = "disabled"
+
+[sandbox_workspace_write]
+network_access = false
+
+[features]
+hooks = true
+
+[[hooks.SessionStart]]
+matcher = ".*"
+[[hooks.SessionStart.hooks]]
+type = "command"
+command = 'C:/Users/LYF/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe C:/Users/LYF/Documents/ChatGPT/final-R3-ENV/runtime-support/capture_hook.py'
+timeout = 20
+
+[[hooks.PreToolUse]]
+matcher = ".*"
+[[hooks.PreToolUse.hooks]]
+type = "command"
+command = 'C:/Users/LYF/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe C:/Users/LYF/Documents/ChatGPT/final-R3-ENV/runtime-support/capture_hook.py'
+timeout = 20
+
+[[hooks.PostToolUse]]
+matcher = ".*"
+[[hooks.PostToolUse.hooks]]
+type = "command"
+command = 'C:/Users/LYF/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe C:/Users/LYF/Documents/ChatGPT/final-R3-ENV/runtime-support/capture_hook.py'
+timeout = 20
+
+[[hooks.PermissionRequest]]
+matcher = ".*"
+[[hooks.PermissionRequest.hooks]]
+type = "command"
+command = 'C:/Users/LYF/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe C:/Users/LYF/Documents/ChatGPT/final-R3-ENV/runtime-support/capture_hook.py'
+timeout = 20
+
+[[hooks.UserPromptSubmit]]
+matcher = ".*"
+[[hooks.UserPromptSubmit.hooks]]
+type = "command"
+command = 'C:/Users/LYF/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe C:/Users/LYF/Documents/ChatGPT/final-R3-ENV/runtime-support/capture_hook.py'
+timeout = 20
+
+[[hooks.Stop]]
+matcher = ".*"
+[[hooks.Stop.hooks]]
+type = "command"
+command = 'C:/Users/LYF/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe C:/Users/LYF/Documents/ChatGPT/final-R3-ENV/runtime-support/capture_hook.py'
+timeout = 20
+
+[[hooks.SessionEnd]]
+matcher = ".*"
+[[hooks.SessionEnd.hooks]]
+type = "command"
+command = 'C:/Users/LYF/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe C:/Users/LYF/Documents/ChatGPT/final-R3-ENV/runtime-support/capture_hook.py'
+timeout = 20

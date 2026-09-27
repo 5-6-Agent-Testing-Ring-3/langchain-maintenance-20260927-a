@@ -195,3 +195,7 @@ virtualenv/
 scratch/
 
 .langgraph_api/
+
+.tools/*
+!.tools/Activate.ps1
+.uv-cache/

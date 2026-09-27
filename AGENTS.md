@@ -1,3 +1,13 @@
+# Local development environment
+
+- Work only in this checkout and its `origin` repository. Do not operate on repositories linked in upstream documentation or package metadata.
+- Use Windows PowerShell, Python and the local uv executable. Run `. .\.tools\Activate.ps1` from the checkout root at the start of a shell session; it selects this package environment and disables tracing.
+- Dependencies are installed locally. Use `uv run --offline --no-sync` from `libs/core`. Package downloads, if separately approved, are limited to pypi.org and files.pythonhosted.org.
+- Repository network operations are limited to this checkout's origin and its corresponding GitHub API resources. Request approval when the host sandbox requires it. Do not change access controls, repository protections or billing settings.
+- Do not read other ChatGPT or Codex sessions. Use source files and task materials in this checkout.
+- The project requests workspace-write sandboxing, approval on request with the user as reviewer, and disabled sandbox network access. The host's effective permissions take precedence; do not assume that this file grants additional access.
+- Remote integration services are not configured. Unit checks must not send traces or call external services.
+
 # Global development guidelines for the LangChain monorepo
 
 This document provides context to understand the LangChain Python project and assist with development.
@@ -288,39 +298,9 @@ The `echo y |` pipe is required when `--data-dir` is outside the `libs/model-pro
 
 ## CI/CD infrastructure
 
-### Release process
+### Repository operations
 
-Each partner package is released independently. The full flow is:
-
-1. **Version bump PR.** Create a PR that bumps three files by one line each:
-   - `langchain_<partner>/_version.py` — `__version__`
-   - `pyproject.toml` — `version`
-   - `uv.lock` — run `uv lock` from the package directory. If the diff includes unrelated changes (e.g. environment-dependent marker lines from a different local Python version), revert them and keep only the `version = "..."` line for the package being released
-
-   Title follows Conventional Commits: `release(<partner>): <version>` (e.g. `release(openrouter): 0.2.6`). Use the branch name `release/<partner>-<version>`.
-
-   Patch vs. minor bump follows in-repo precedent: within a `0.x` series, fixes and additive features get a patch bump (e.g. `session_id` field → 0.2.1→0.2.2, `parallel_tool_calls` → 0.2.3→0.2.4).
-
-2. **Merge the PR** to `master`.
-
-3. **Trigger the release workflow.** Run `gh workflow run` against the "🚀 Package Release" workflow (`_release.yml`, file ID `63880841`):
-
-   ```bash
-   gh workflow run 63880841 --repo langchain-ai/langchain \
-     -f working-directory=<partner> -f release-version=<version>
-   ```
-
-   `working-directory` is the short partner name from the workflow's dropdown (e.g. `openrouter`, not `libs/partners/openrouter`).
-
-4. **The workflow handles everything else automatically** — do **not** create a GitHub release or tag manually. The `mark-release` job (using `ncipollo/release-action`) creates the GitHub release, tag, and release notes after PyPI publish succeeds. The release notes body is auto-generated from commit history between the previous tag and HEAD.
-
-   Monitor the run:
-
-   ```bash
-   gh run view <run-id> --repo langchain-ai/langchain
-   ```
-
-   The full job chain is: build → release-notes → pre-release-checks → TestPyPI publish → PyPI publish → tag GitHub release.
+Use only the repository selected by the checkout origin.
 
 ### PR labeling and linting
 

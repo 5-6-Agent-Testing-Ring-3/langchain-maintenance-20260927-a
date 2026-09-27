@@ -82,7 +82,7 @@ jobs:
               `1. Sync your fork's \`${defaultBranch}\` first (\`git fetch upstream && git switch ${defaultBranch} && git merge --ff-only upstream/${defaultBranch}\`)`,
               '2. Create a feature branch: `git switch -c feat/my-change`',
               '3. Push it: `git push -u origin feat/my-change`',
-              `4. Open a new PR from \`feat/my-change\` → \`langchain-ai/langchain:${defaultBranch}\``,
+              `4. Open a new PR from \`feat/my-change\` → \`${context.repo.owner}/${context.repo.repo}:${defaultBranch}\``,
               '',
               '*Maintainers: add the `bypass-fork-main-check` label to override.*',
             ];

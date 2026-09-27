@@ -97,7 +97,7 @@ jobs:
         if: inputs.cli-path == ''
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v6
         with:
-          repository: langchain-ai/langchain
+          repository: ${{ github.repository }}
           ref: ${{ inputs.cli-ref }}
           sparse-checkout: libs/model-profiles
           path: _langchain-cli
